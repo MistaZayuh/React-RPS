@@ -4,12 +4,18 @@ import { Header, Container, Statistic, Button, Icon } from "semantic-ui-react";
 // import Results from "./Results";
 
 class App extends React.Component {
-  state = { wins: 0, losses: 0, ties: 0, winner: null };
+  state = { wins: 0, losses: 0, ties: 0, winner: null, compChoice: null };
+
+  compThrow = () => {
+    let i = this.rando()
+    let compOptions = ["rock", "paper", "scissors"]
+    let compThrows = compOptions[i]
+    return compThrows
+  }
 
   handleClick = (name) => {
-    let i = this.rando()
-    const compChoices = ["rock", "paper", "scissors"]
-    let comp = compChoices[i]
+    this.setState({compChoice: this.compThrow()})
+    let comp = this.state.compChoice
     if (comp === name){
       this.setState({winner: "none"});}
     else if (comp === "rock" && name === "paper"){
@@ -25,7 +31,6 @@ class App extends React.Component {
     else if (comp === "scissors" && name === "paper"){
       this.setState({winner: "computer"});}
       this.setHistory()
-
   };
 
   rando = () => {
