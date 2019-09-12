@@ -4,7 +4,7 @@ import { Header, Container, Statistic, Button, Icon } from "semantic-ui-react";
 // import Results from "./Results";
 
 class App extends React.Component {
-  state = { wins: 0, losses: 0, ties: 0, winner: null, compChoice: null };
+  state = { wins: 0, losses: 0, ties: 0, winner: null, compChoice: null, playerChoice: null };
 
   compThrow = () => {
     let i = this.rando()
@@ -14,6 +14,7 @@ class App extends React.Component {
   }
 
   handleClick = (name) => {
+    this.setState({playerChoice: name})
     this.setState({compChoice: this.compThrow()})
     let comp = this.state.compChoice
     if (comp === name){
@@ -66,6 +67,18 @@ class App extends React.Component {
       <Statistic>
         <Statistic.Value>{this.state.ties}</Statistic.Value>
         <Statistic.Label>Ties</Statistic.Label>
+      </Statistic>
+      <Statistic>
+        <Statistic.Value>{this.state.compChoice}</Statistic.Value>
+        <Statistic.Label>Computer Threw </Statistic.Label>
+      </Statistic>
+      <Statistic>
+        <Statistic.Value>{this.state.playerChoice}</Statistic.Value>
+        <Statistic.Label>Player Threw </Statistic.Label>
+      </Statistic>
+      <Statistic>
+        <Statistic.Value>{this.state.winner}</Statistic.Value>
+        <Statistic.Label>Winnner </Statistic.Label>
       </Statistic>
     </Statistic.Group>
   </div>
